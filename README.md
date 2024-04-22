@@ -5,7 +5,7 @@ A source is flagged as potential candidate if its proper motion and position ang
 
 The file sso-finder.py contains the SSO class in which the "getit" function is the one useful for the SSO recovery. The function call is:
 
-  # _outralist, outdelist, outcatlist, times, CandidateSSO = getit(logger, dir, FileOFCat, FileOFRefTime, minDist, maxDist, ErrPosAngle, ErrPropMoti, format="txt", racolumn=0, decolumn=1, MinimumNumberCATON=1, MinimumCat=3, info=True)_
+_outralist, outdelist, outcatlist, times, CandidateSSO = getit(logger, dir, FileOFCat, FileOFRefTime, minDist, maxDist, ErrPosAngle, ErrPropMoti, format="txt", racolumn=0, decolumn=1, MinimumNumberCATON=1, MinimumCat=3, info=True)_
 
 where in output you have:
 _outralist_:     Right Ascention of candidates
