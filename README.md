@@ -32,4 +32,4 @@ This library is free software; you can redistribute it and/or modify it under th
 
 This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
 
-An article describing the usage and the capabilities of the SSO-FINDER is now in preparation.
+An article entitled _Franco A.,Sacquegna S., Nucita A.A., De Paolis F., and Strafella F., TBD, "Detection of Solar System Objects in astronomical survey images: application to TESS images"_ describing the usage and the capabilities of the SSO-FINDER is now in preparation.
