@@ -19,7 +19,7 @@ where in output you have:
 
 An articole describing the usage and the capabilities of the SSO-FINDER is now in preparation.
 
-## Licensed under version 3 of the GNU Affero General Public License.
+### Licensed under version 3 of the GNU Affero General Public License.
 
 This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 3.0 of the License, or (at your option) any later version.
 
