@@ -9,9 +9,13 @@ _outralist, outdelist, outcatlist, times, CandidateSSO = getit(logger, dir, File
 
 where in output you have:
 _outralist_:     Right Ascention of candidates
+
 _outdelist_:     Declination of candidates
+
 _outcatlist_:    List of catalogues in which candidates are found
+
 _times_:         List of times corresponding to outcatlist
+
 _CandidateSSO_:  Candidates list (indexes in outcatlist)
 
 An articole describing the usage and the capabilities of the SSO-FINDER is now in preparation.
