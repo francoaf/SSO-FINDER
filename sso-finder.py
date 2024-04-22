@@ -52,7 +52,7 @@
 #     # extension number in case a
 #     ext
 #
-# OUTPUT: getit functions returns:
+# OUTPUT: sso_finder functions returns:
 #         rap, dep: coordinates numpy arrays of objects in PIVOT catalogue
 #         ralist, delist: list of coordinates of numpy arrays. Each element of the list is a set of coordinates
 #                         corresponding to one of the input catalogues.
@@ -83,7 +83,7 @@ class SSO(object):
 
         """
     # ----------------------------------------------------------------------------
-    def getit(self, logger, dir, FileOFCat, FileOFRefTime, minDist, maxDist, ErrPosAngle, ErrPropMoti, format="txt",
+    def sso_finder(self, logger, dir, FileOFCat, FileOFRefTime, minDist, maxDist, ErrPosAngle, ErrPropMoti, format="txt",
               racolumn=0, decolumn=1, MinimumNumberCATON=1, MinimumCat=3, info=True):
         '''
 
@@ -124,17 +124,17 @@ class SSO(object):
         self.racolumn = racolumn
         self.decolumn = decolumn
 
-        logger.info('getit:> reading input list files...')
+        logger.info('sso_finder:> reading input list files...')
         p = os.path.join(self.dir, self.FileOFCat)
         if (not os.path.isfile(p)):
-            logger.info('getit:> File does not exist. Severe stop. Check: %s', str(p))
+            logger.info('sso_finder:> File does not exist. Severe stop. Check: %s', str(p))
             return -1, -1, -1, -1
         else:
             tmpcats = numpy.loadtxt(p, dtype=str, usecols=(0), unpack=True, comments='#')
 
         p = os.path.join(self.dir, self.FileOFRefTime)
         if (not os.path.isfile(p)):
-            logger.info('getit:> File does not exist. Severe stop. Check: %s', str(p))
+            logger.info('sso_finder:> File does not exist. Severe stop. Check: %s', str(p))
             return -1, -1, -1, -1
         else:
             tmpref = numpy.loadtxt(p, dtype=float, usecols=(0), unpack=True, comments='#')
@@ -174,7 +174,7 @@ class SSO(object):
         # Minimum separation to be searched for. two stars below this separation im
         min_sep = self.minDist * u.arcsec
 
-        logger.info('getit:> reading ASCII files...')
+        logger.info('sso_finder:> reading ASCII files...')
 
         # List of arrays (coordinates for all catalogues)
         ralistAll = []
@@ -190,7 +190,7 @@ class SSO(object):
         for ilist in InputListALLCatalogue:
             c = os.path.join(self.dir, ilist)
             if (not os.path.isfile(c)):
-                logger.info('getit:> File does not exist. Severe stop. Check: %s', str(c))
+                logger.info('sso_finder:> File does not exist. Severe stop. Check: %s', str(c))
                 return -1, -1, -1, -1
             # rac, dec = numpy.loadtxt(c, usecols=(0, 1), unpack=True)
             rac, dec = numpy.loadtxt(c, usecols=(self.racolumn, self.decolumn), unpack=True)
@@ -210,7 +210,7 @@ class SSO(object):
         CandidateSSO = []
 
         # Deleting sources within MinDist
-        logger.info('getit:> removing sources within min_sep...')
+        logger.info('sso_finder:> removing sources within min_sep...')
 
         index_to_be_removed = self.cross_correlate_multi_cat(NAllCatalogue, ralistAll, delistAll, sep=min_sep)
 
@@ -241,7 +241,7 @@ class SSO(object):
         # Check again that no star in pivot has a corresponding associated entry (within min_sep) in the other catalogues)
         # Second method: using separation and then masking the output with res = (sep.arcsecond) * u.arcsec < min_sep. Then counting the len of reslist. Repeating for each catalogues, increase oncat if an association is found
 
-        logger.info('getit:> searching candidates with the input constraints...')
+        logger.info('sso_finder:> searching candidates with the input constraints...')
         for indexpivot, ra, dec in zip(pivotindex, rap, dep):
 
             cpivot = SkyCoord(ra=ra * u.deg, dec=dec * u.deg, frame='icrs')
@@ -338,7 +338,7 @@ class SSO(object):
                 # get indices in catalogues
 
                 if (self.info):
-                    print('getit:> associating...')
+                    print('sso_finder:> associating...')
                 array_tmp = numpy.zeros((NCatalogues, NCatalogues, NCatalogues), dtype=int)
                 array_tmp.fill(-1)
 
@@ -442,7 +442,7 @@ class SSO(object):
         ################################################################
         # Keep only candidates with >= MinimumCat elements not negative (-1)
         ###############################################################
-        logger.info('getit:> Purging candidate SSO with MinimumCat...')
+        logger.info('sso_finder:> Purging candidate SSO with MinimumCat...')
         CandidateSSOtmp = []
         for tmp in CandidateSSO:
             count = 0
@@ -456,7 +456,7 @@ class SSO(object):
         ################################################################
         # Rearrange output lists
         ###############################################################
-        logger.info('getit:> Appending...')
+        logger.info('sso_finder:> Appending...')
         outcatlist = []
         outralist = []
         outdelist = []
@@ -477,8 +477,8 @@ class SSO(object):
             times.append(i)
         times = numpy.asarray(times)
 
-        logger.info('getit:> --------------------------------------')
+        logger.info('sso_finder:> --------------------------------------')
         logger.info('%s SSO candidates have been found', str(len(CandidateSSO)))
-        logger.info('getit:> --------------------------------------')
+        logger.info('sso_finder:> --------------------------------------')
 
         return outralist, outdelist, outcatlist, times, CandidateSSO
