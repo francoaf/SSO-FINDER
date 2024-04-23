@@ -24,11 +24,11 @@ outralist, outdelist, outcatlist, times, CandidateSSO = sso_finder(logger, dir, 
 ```
 
 where in output you have:
-* _outralist_:     Right Ascention of candidates
-*_outdelist_:     Declination of candidates
-* _outcatlist_:    List of catalogues in which candidates are found
-* _times_:         List of times corresponding to outcatlist
-* _CandidateSSO_:  Candidates list (indexes in outcatlist)
+* _outralist_:     List of four lists of Right Ascention
+*_outdelist_:     List of four lists of Declination
+* _outcatlist_:    List of four lists of Input Catalogues
+* _times_:         List of four lists of reference times corresponding to outcatlist
+* _CandidateSSO_:  List containing SSO candidates list (lists of indexes in which they are located in each catalogue)
 
 
 
